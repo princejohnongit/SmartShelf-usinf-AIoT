@@ -6,10 +6,10 @@ import time
 # Initialize the inference client
 client = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
-    api_key="eyKFS9MeCHFrf13n7oTH"
+    api_key="*****************************"
 )
 #API Key about Notifications
-api_key = "o.o58jcLa8H18LQwbFf6MRCsiD5qVxK0zS"  # Replace with your actual API key
+api_key = "********************"  # Replace with your actual API key
 #-----------------------------------------------------------
 
 def noti(text):
@@ -23,14 +23,12 @@ def loki(alerts):
             noti(alerts[0])
             alerts.clear()
 
-
-
 #----------------------------------------------------------
 def mpredict(filepath):
     # Run inference
     result = client.run_workflow(
-        workspace_name="smartshelf",
-        workflow_id="custom-workflow-2",
+        workspace_name="YOUR_WORKSPACE_NAME_HERE",
+        workflow_id="YOUR_WORKFLOW_ID_HERE",
         images={"image": filepath},
         use_cache=True
     )
@@ -60,6 +58,7 @@ def mpredict(filepath):
             except ValueError:
                 alerts.append(f"Could not convert '{number_str}' to an integer: {number_str}")
 
+#-------------------------------------------------------------------------------------------------------
 def schedule_mpredict(filepath):
     for i in range(30):
         mpredict(filepath)
